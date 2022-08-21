@@ -2,8 +2,11 @@ package com.example.cloud.mall.common.common;
 
 import com.example.cloud.mall.common.exception.MallException;
 import com.example.cloud.mall.common.exception.MallExceptionEnum;
+import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import java.util.Set;
 
 @Component
 public class Constant {
@@ -23,12 +26,7 @@ public class Constant {
     public static final String WATER_MARK_JPG = "watermark.jpg";
     public static final Integer IMAGE_SIZE = 400;
     public static final Float IMAGE_OPACITY = 0.5f;
-    public static String FILE_UPLOAD_DIR;
 
-    @Value("${file.upload.path}")
-    public void setFileUploadDir(String fileUploadDir) {
-        FILE_UPLOAD_DIR = fileUploadDir;
-    }
 
     public enum OrderStatusEnum {
         CANCELED(0, "用户已取消"), NOT_PAID(10, "未付款"), PAID(20, "已付款"), DELIVERED(30, "已发货"), FINISHED(40, "交易完成");
@@ -81,5 +79,8 @@ public class Constant {
 
         int UN_SELECTED = 0;//购物车未选中状态
         int SELECTED = 1;//购物车选中状态
+    }
+    public interface ProductListOrderBy {
+        Set<String> PRICE_ASC_DESC = Sets.newHashSet("price desc", "price asc");
     }
 }

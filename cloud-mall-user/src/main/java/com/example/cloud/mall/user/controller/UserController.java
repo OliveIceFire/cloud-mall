@@ -13,10 +13,7 @@ import com.example.cloud.mall.user.service.UserService;
 import com.example.cloud.mall.user.service.EmailService;
 import com.mysql.cj.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -34,6 +31,7 @@ public class UserController {
     public User getUserInfo() {
         return userService.getUser();
     }
+
     @PostMapping("/adminRegister")
     public ApiRestResponse adminRegister(@RequestParam("username") String username, @RequestParam("password") String password) {
         if (StringUtils.isNullOrEmpty(username)) {
@@ -63,7 +61,9 @@ public class UserController {
     }
 
     @GetMapping("/SimpleLogin")
-    public ApiRestResponse SimpleLogin(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
+    public ApiRestResponse SimpleLogin(@RequestParam("username") String username,
+                                       @RequestParam("password") String password,
+                                       HttpSession session) {
         if (StringUtils.isNullOrEmpty(username)) {
             return ApiRestResponse.error(MallExceptionEnum.NEED_USER_NAME);
         }
@@ -224,5 +224,10 @@ public class UserController {
         } else {
             return ApiRestResponse.error(MallExceptionEnum.NEED_ADMIN);
         }
+    }
+
+    @PostMapping("/checkAdminRole")//feign
+    public Boolean checkAdminRole(@RequestBody User user) {
+        return userService.checkAdminRole(user);
     }
 }

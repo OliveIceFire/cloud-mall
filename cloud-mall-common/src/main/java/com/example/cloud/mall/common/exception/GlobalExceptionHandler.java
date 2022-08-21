@@ -6,30 +6,35 @@ import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestControllerAdvice
+//@RestControllerAdvice
 //拦截异常
+@ControllerAdvice
 public class GlobalExceptionHandler {
     private final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(Exception.class)
+    @ResponseBody
     public Object handleException(Exception e) {
         log.error("Default Exception", e);
         return ApiRestResponse.error(MallExceptionEnum.SYSTEM_ERROR);
     }
 
     @ExceptionHandler(MallException.class)
+    @ResponseBody
     public Object handleMallException(MallException e) {
         log.error("MallException", e);
         return ApiRestResponse.error(e.getCode(), e.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
     public ApiRestResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.error("MethodArgumentNotValidException", e);
         return handleBindingResult(e.getBindingResult());
