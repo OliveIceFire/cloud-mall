@@ -9,6 +9,7 @@
         <module>cloud-mall-common</module>
         <module>cloud-mall-zuul</module>
         <module>cloud-mall-product</module>
+        <module>cloud-mall-cart-order</module>
     </modules>
 
     <parent>

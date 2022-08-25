@@ -8,10 +8,7 @@ import com.example.cloud.mall.product.service.ProductService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductController {
@@ -31,6 +28,17 @@ public class ProductController {
     public ApiRestResponse list(@RequestBody ProductListReq productListReq) {
         PageInfo pageInfo = productService.list(productListReq);
         return ApiRestResponse.success(pageInfo);
+    }
+
+    @ApiOperation("商品详情")
+    @GetMapping("product/detailForFeign")
+    public Product detailForFeign(@RequestParam Integer id) {
+        return productService.detail(id);
+    }
+
+    @PostMapping("product/updateStock")
+    public void updateStock(@RequestParam Integer productId, @RequestParam Integer stock) {
+        productService.updateStock(productId, stock);
     }
 
 

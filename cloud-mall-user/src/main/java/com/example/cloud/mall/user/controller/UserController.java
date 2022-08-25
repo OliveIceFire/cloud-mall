@@ -9,8 +9,8 @@ import com.example.cloud.mall.common.exception.MallException;
 import com.example.cloud.mall.common.exception.MallExceptionEnum;
 import com.example.cloud.mall.common.util.EmailUtil;
 import com.example.cloud.mall.user.model.entity.User;
-import com.example.cloud.mall.user.service.UserService;
 import com.example.cloud.mall.user.service.EmailService;
+import com.example.cloud.mall.user.service.UserService;
 import com.mysql.cj.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -229,5 +229,10 @@ public class UserController {
     @PostMapping("/checkAdminRole")//feign
     public Boolean checkAdminRole(@RequestBody User user) {
         return userService.checkAdminRole(user);
+    }
+
+    @GetMapping("/getUser")//feign
+    public User getUser(HttpSession session) {
+        return (User) session.getAttribute(Constant.MALL_USER);
     }
 }

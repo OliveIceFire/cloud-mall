@@ -26,4 +26,6 @@ public interface ProductService {
     PageInfo list(ProductListReq productListReq);
 
     void addProductByExcel(File destFile) throws IOException;
+
+    void updateStock(Integer productId, Integer stock);
 }
