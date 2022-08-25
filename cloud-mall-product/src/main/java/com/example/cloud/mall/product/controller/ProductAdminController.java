@@ -143,7 +143,7 @@ public class ProductAdminController {
                         Constant.IMAGE_OPACITY)
                 .toFile(ProductConstant.FILE_UPLOAD_DIR + newFileName);
         String address = uri;
-        return ApiRestResponse.success("http://" + address + "/images/" + newFileName);
+        return ApiRestResponse.success("http://" + address + "/product/images/" + newFileName);
 //        try {
 //            return ApiRestResponse.success(getHost(new URI(httpServletRequest.getRequestURL() + "")) + "/images/" + newFileName);
 //        } catch (URISyntaxException e) {

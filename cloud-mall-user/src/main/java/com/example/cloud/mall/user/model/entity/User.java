@@ -3,7 +3,7 @@ package com.example.cloud.mall.user.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
+public class User implements Serializable{
     private Integer id;
 
     private String username;

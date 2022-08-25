@@ -27,7 +27,7 @@ public class CategoryController {
 
     @ApiOperation("添加分类")
     @PostMapping("admin/category/add")
-    public ApiRestResponse addCategory(HttpSession session, @Valid @RequestBody AddCategoryReq req) {
+    public ApiRestResponse addCategory(@Valid @RequestBody AddCategoryReq req, HttpSession session) {
 
         categoryService.add(req);
         return ApiRestResponse.success();

@@ -85,6 +85,12 @@
             <artifactId>thumbnailator</artifactId>
             <version>0.4.17</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>cloud-mall-user</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
